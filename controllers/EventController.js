@@ -57,16 +57,17 @@ module.exports = {
     }
   },
   getAllEvents: (req, res) => {
-    Event.see({})
-      .then((events) => {
-        res.json({ success: true, events });
+    Event.find()
+    .then(events => {
+      res.json({
+        confirmation: 'success',
+        data: events
       })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json({
-          success: false,
-          message: 'An Error Occured, please try again later',
-        });
-      });
+    }).catch(err => {
+      res.json({
+        confirmation: 'failure',
+        message: err.message
+      })
+    });
   },
 };
