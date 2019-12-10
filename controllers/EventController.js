@@ -57,17 +57,18 @@ module.exports = {
     }
   },
   getAllEvents: (req, res) => {
-    Event.find()
-    .then(events => {
+    var query = Event.find();
+    query.exec().then(events => {
+      console.log("events: ", events)
       res.json({
         confirmation: 'success',
         data: events
       })
     }).catch(err => {
-      res.json({
-        confirmation: 'failure',
-        message: err.message
-      })
+        res.json({
+          confirmation: 'failure',
+          message: err.message
+        })
     });
   },
 };
