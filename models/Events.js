@@ -18,6 +18,7 @@ const EventSchema = new Schema(
   },
   {
     timestamps: true,
+    bufferCommands: false
   },
 );
 
